@@ -90,42 +90,15 @@ namespace Loggr.Utility
                 res += "<br />";
                 res += "<b>Traced Object(s)</b><br />";
                 res += "<br />";
-                if (traceObject != null)
-                {
-                    res += ObjectDumper.DumpObject(traceObject, 1);
-                }
-                else
-                {
-                    res += "Not specified<br />";
-                }
+                res += ObjectDumper.DumpObject(traceObject, 1);
             }
 
             res += "<br />";
             res += "<b>Stack Trace</b><br />";
             res += "<br />";
-
-            FormatStack(ex, ref res);
+            res += ex.ToString();
 
             return res;
-        }
-
-        protected static void FormatStack(Exception Ex, ref string Buffer)
-        {
-            if (Ex.InnerException != null)
-            {
-                FormatStack(Ex.InnerException, ref Buffer);
-            }
-            Buffer += string.Format("[{0}: {1}]<br />", Ex.GetType().ToString(), Ex.Message);
-            if (Ex.StackTrace != null)
-            {
-                Buffer += HttpUtility.HtmlEncode(Ex.StackTrace).Replace(Environment.NewLine, "<br />");
-            }
-            else
-            {
-                Buffer += "No stack trace";
-            }
-            Buffer += "<br/>";
-            Buffer += "<br/>";
         }
     }
 }
