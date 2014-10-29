@@ -96,7 +96,7 @@ namespace Loggr.Utility
             res += "<br />";
             res += "<b>Stack Trace</b><br />";
             res += "<br />";
-            res += string.IsNullOrEmpty(ex.ToString()) ? "No stack trace" : ex.ToString();
+            res += string.IsNullOrEmpty(ex.ToString()) ? "No stack trace" : string.Format("<pre>{0}</pre>", ex.ToString());
 
             return res;
         }
